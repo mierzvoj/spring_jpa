@@ -11,11 +11,14 @@ import java.util.*;
 
 @RestController
 @RequestMapping
+
 public class ArticleController {
     private ArticleService articleService;
 
+
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
+
     }
 
 
@@ -56,8 +59,11 @@ public class ArticleController {
         return ResponseEntity.ok(articleService.updateArticle(article));
     }
 
-    @GetMapping("/getTotalPrices")
-    public ResponseEntity<BigInteger> getTotalPrices() {
-        return ResponseEntity.ok(articleService.totalArticlePrices());
+    @GetMapping("/{select}")
+
+    public ResponseEntity<Optional<Article>> selectAll() {
+        return ResponseEntity.ok(articleService.selectAll());
+
     }
+
 }

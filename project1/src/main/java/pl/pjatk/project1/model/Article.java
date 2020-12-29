@@ -4,10 +4,13 @@ import org.springframework.stereotype.*;
 
 import javax.persistence.*;
 import java.math.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 @Service
 @Entity
-
+@Table
 public class Article {
 
     @Id
@@ -15,6 +18,7 @@ public class Article {
 
     private Long id;
     private String articleName;
+    @Column
     private BigDecimal articlePrice;
 
 

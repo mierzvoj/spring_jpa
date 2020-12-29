@@ -1,19 +1,22 @@
 package pl.pjatk.project1.service;
 
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
 import pl.pjatk.project1.model.*;
 import pl.pjatk.project1.repository.*;
 
 import java.math.*;
 import java.util.*;
+import java.util.stream.*;
 
 @Service
 public class ArticleService {
     private ArticleRepository articleRepository;
-    private TotalRepository totalRepository;
+
 
     public ArticleService(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
+
     }
 
     public List<Article> findAll(){
@@ -40,11 +43,10 @@ public class ArticleService {
         return article;
     }
 
-    public BigInteger totalArticlePrices() {
-        return totalRepository.selectTotals();
+    public Optional<Article> selectAll() {
+        return articleRepository.selectId();
 
     }
-
 
 
 }
