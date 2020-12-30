@@ -13,6 +13,7 @@ import java.util.*;
 @RequestMapping
 
 public class ArticleController {
+    @Autowired
     private ArticleService articleService;
 
 
@@ -43,7 +44,10 @@ public class ArticleController {
 
     }
 
-    @PostMapping
+
+    @RequestMapping(value = "/article",
+            produces = "application/json",
+            method=RequestMethod.POST)
     public ResponseEntity saveArticle(@RequestBody Article article){
         return ResponseEntity.ok(articleService.saveArticle(article));
     }
@@ -54,14 +58,14 @@ public class ArticleController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/article/{id}")
     public ResponseEntity<Article> updateArticle(@RequestBody Article article){
         return ResponseEntity.ok(articleService.updateArticle(article));
     }
 
-    @GetMapping("/{select}")
+    @GetMapping("/select")
 
-    public ResponseEntity<Optional<Article>> selectAll() {
+    public ResponseEntity<List<ArticleDTO>> selectAll() {
         return ResponseEntity.ok(articleService.selectAll());
 
     }

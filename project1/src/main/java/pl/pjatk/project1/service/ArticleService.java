@@ -43,7 +43,7 @@ public class ArticleService {
         return article;
     }
 
-    public Optional<Article> selectAll() {
+    public List<ArticleDTO> selectAll() {
         return articleRepository.selectId();
 
     }

@@ -3,38 +3,29 @@ package pl.pjatk.project1.model;
 import org.springframework.stereotype.*;
 
 import javax.persistence.*;
+import java.awt.print.*;
 import java.math.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
-@Service
-@Entity
-@Table
-public class Article {
-
-    @Id
-    @GeneratedValue
-    @Column (unique=true)
+@Component
+public class ArticleDTO {
     private Long id;
     private String articleName;
-    @Column
     private BigDecimal articlePrice;
 
 
-    public Article(Long id, String articleName, BigDecimal articlePrice) {
+    public ArticleDTO(Long id, String articleName, BigDecimal articlePrice) {
         this.id = id;
         this.articleName = articleName;
         this.articlePrice = articlePrice;
     }
 
-    public Article(String articleName, BigDecimal articlePrice) {
+    public ArticleDTO(String articleName, BigDecimal articlePrice) {
         this.id = id;
         this.articleName = articleName;
         this.articlePrice = articlePrice;
     }
 
-    public Article() {
+    public ArticleDTO() {
     }
 
     public Long getId() {
@@ -61,6 +52,19 @@ public class Article {
         this.articlePrice = articlePrice;
     }
 
+//    public ArticleDTO mapArticleToArticleDTO(ArticleDTO articleDTO, Article article) {
+//        ArticleDTO article1 = new ArticleDTO();
+//
+//        if (article.getArticleName() != null) {
+//            article1.setArticleName(article.getArticleName());
+//        }
+//        if (article.getArticlePrice() != null) {
+//            article1.setArticlePrice(article.getArticlePrice());
+//        }
+//        return article1;
+//    }
 
-
+    static ArticleDTO from (Article article) {
+        return new ArticleDTO(article.getArticleName(), article.getArticlePrice());
+    }
 }

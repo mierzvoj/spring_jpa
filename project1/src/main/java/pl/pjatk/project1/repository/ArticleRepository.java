@@ -13,5 +13,5 @@ import java.util.*;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT id  FROM Article")
-    public Optional<Article> selectId();
+    public List<ArticleDTO> selectId();
 }
