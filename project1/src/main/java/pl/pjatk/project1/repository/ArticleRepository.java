@@ -1,17 +1,20 @@
 package pl.pjatk.project1.repository;
-
-import org.springframework.data.domain.*;
+import java.awt.print.*;
+import java.util.List;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.*;
+import org.springframework.data.repository.query.*;
 import org.springframework.stereotype.*;
-import org.springframework.stereotype.Repository;
 import pl.pjatk.project1.model.*;
-
-import java.math.*;
-import java.util.*;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    @Query("SELECT id  FROM Article")
-    public List<ArticleDTO> selectId();
+
+    @Query("SELECT Article  FROM  Article article WHERE article.id = :id")
+    List<Article> findArticlesById(@Param("id") Long id);
+
+    @Query("SELECT SUM(article.articlePrice)  FROM  Article article ")
+    List<Article> findArticlesTotal();
+
 }
